@@ -1,0 +1,1 @@
+udpsrc port=8554 ! application/x-rtp,payload=96 ! rtph264depay ! video/x-h264,stream-format=avc ! avdec_h264 ! videoconvert ! video/x-raw,format=BGRA ! appsink name=outsink
