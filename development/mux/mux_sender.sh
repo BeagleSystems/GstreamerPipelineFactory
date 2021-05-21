@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gst-launch-1.0 --gst-debug-level=3 rtpmux name=mux ! udpsink host=192.168.2.95 port=5000 async=false nvarguscamerasrc sensor_id=0 ! omxh264enc ! 'video/x-h264,stream-format=avc,bitrate=400000' ! rtph264pay ! 'application/x-rtp,payload=96' ! mux.sink_0 nvarguscamerasrc sensor_id=1 ! omxh264enc ! 'video/x-h264,stream-format=avc,bitrate=400000' ! rtph264pay ! 'application/x-rtp,payload=97' ! mux.sink_1 
