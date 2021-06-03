@@ -6,7 +6,7 @@
 
 #Disadvantage:
 # Highly complex system compared to existing gstreamer initalisation. 
-
+# Required more service startups compared to exisitng method.
 
 #CREATE PIPE1 - CAM1 
 gst-client pipeline_create pipe1 nvarguscamerasrc sensor_id=0 ! 'video/x-raw(memory:NVMM), format=NV12, width=1280, height=720, framerate=59/1' ! interpipesink name=cam1 sync=false
