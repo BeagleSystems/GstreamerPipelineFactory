@@ -39,8 +39,8 @@ gst-client pipeline_play pipe5
 gst-client pipeline_stop pipe1
 gst-client pipeline_stop pipe2
 gst-client pipeline_stop pipe3
-gst-client pipeline_play pipe4
-gst-client pipeline_play pipe5
+gst-client pipeline_stop pipe4
+gst-client pipeline_stop pipe5
 
 
 #STOP AND DELETE 
