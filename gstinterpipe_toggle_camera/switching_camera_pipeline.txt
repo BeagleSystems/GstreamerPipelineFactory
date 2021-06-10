@@ -1,4 +1,8 @@
+#Launch GST Daemon in an other terminal before creating the pipeline
+gtsd
+
 #CAM0 PIPEPLINE CREATE
+gst-client pipeline_create pipe2 nvarguscamerasrc sensor_id=0 ! \
 'video/x-raw(memory:NVMM), format=NV12, width=1280, height=720, framerate=59/1' !\
 interpipesink name=cam1 async=true sync=false 
 
