@@ -13,20 +13,6 @@ queue ! nvvidconv ! 'video/x-raw,format=NV12, width=640, height=480, framerate=5
 omxh264enc profile=8 control_rate=2 insert-sps-pps=1 iframeinterval=15 bitrate=1000000 ! \
 'video/x-h264,stream-format=avc' ! rtph264pay ! 'application/x-rtp, payload=96' !  interpipesink name=udpsrc1
 
-#START ALL PIPELINE
-gst-client pipeline_play pipe1
-gst-client pipeline_play pipe2
-gst-client pipeline_play pipe3
-
-#STOP PIPELINE
-gst-client pipeline_stop pipe1
-gst-client pipeline_stop pipe2
-gst-client pipeline_stop pipe3
-
-#STOP AND DELETE 
-gstd-client pipeline_delete pipe1
-gstd-client pipeline_delete pipe2
-gstd-client pipeline_delete pipe3
 
 #RECEIEVE RTSP CAM
 gst-client pipeline_create pipe4 udpsrc address=192.168.2.52 port=8554 ! interpipesink name=udpsrc2
@@ -35,10 +21,32 @@ gst-client pipeline_create pipe4 udpsrc address=192.168.2.52 port=8554 ! interpi
 gst-client pipeline_create pipe5 interpipesrc name=udpsink1 listen-to=udpsrc1 ! 'application/x-rtp, payload=96' ! \
 udpsink host=192.168.2.95 port=8554 sync=false async=false
 
-
-
-#TO CHANGE CAMERA'S 
+#TO SWITCH CAMERA'S 
 gstd-client element_set pipe5 interpipesrc1 listen-to cam1
 
 #TO SWITCH RSTP SOURCE
 gstd-client element_set pipe5 udpsink1 listen-to udpsrc2
+
+#START ALL PIPELINE
+gst-client pipeline_play pipe1
+gst-client pipeline_play pipe2
+gst-client pipeline_play pipe3
+gst-client pipeline_play pipe4
+gst-client pipeline_play pipe5
+
+
+#STOP PIPELINE
+gst-client pipeline_stop pipe1
+gst-client pipeline_stop pipe2
+gst-client pipeline_stop pipe3
+gst-client pipeline_stop pipe4
+gst-client pipeline_stop pipe5
+
+
+#STOP AND DELETE 
+gstd-client pipeline_delete pipe1
+gstd-client pipeline_delete pipe2
+gstd-client pipeline_delete pipe3
+gstd-client pipeline_delete pipe4
+gstd-client pipeline_delete pipe5
+
