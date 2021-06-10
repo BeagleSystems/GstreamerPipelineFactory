@@ -2,7 +2,7 @@
 gtsd
 
 #CAM0 PIPEPLINE CREATE
-gst-client pipeline_create pipe2 nvarguscamerasrc sensor_id=0 ! \
+gst-client pipeline_create pipe1 nvarguscamerasrc sensor_id=0 ! \
 'video/x-raw(memory:NVMM), format=NV12, width=1280, height=720, framerate=59/1' !\
 interpipesink name=cam1 async=true sync=false 
 
@@ -26,7 +26,7 @@ gst-client pipeline_create pipe5 interpipesrc name=udpsink1 listen-to=udpsrc1 ! 
 udpsink host=192.168.2.95 port=8554 sync=false async=false
 
 #TO SWITCH CAMERA'S 
-gstd-client element_set pipe5 interpipesrc1 listen-to cam1
+gstd-client element_set pipe3 interpipesrc1 listen-to cam1
 
 #TO SWITCH RTSP SOURCE
 gstd-client element_set pipe5 udpsink1 listen-to udpsrc2
