@@ -1,5 +1,7 @@
 # Gstreamer guide for Switching Cameras 
 
+## Overall Architecture
+![Working of Pipelines](./overall_architecture.png)
 
 ## Installation guide
 
