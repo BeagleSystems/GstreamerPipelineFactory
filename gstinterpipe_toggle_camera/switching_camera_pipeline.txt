@@ -28,7 +28,7 @@ udpsink host=192.168.2.95 port=8554 sync=false async=false
 #TO SWITCH CAMERA'S 
 gstd-client element_set pipe5 interpipesrc1 listen-to cam1
 
-#TO SWITCH RSTP SOURCE
+#TO SWITCH RTSP SOURCE
 gstd-client element_set pipe5 udpsink1 listen-to udpsrc2
 
 #START ALL PIPELINE
