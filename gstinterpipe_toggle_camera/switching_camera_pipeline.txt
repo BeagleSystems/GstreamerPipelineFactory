@@ -1,0 +1,56 @@
+#Launch GST Daemon in an other terminal before creating the pipeline
+gtsd
+
+#CAM0 PIPEPLINE CREATE
+gst-client pipeline_create pipe1 nvarguscamerasrc sensor_id=0 ! \
+'video/x-raw(memory:NVMM), format=NV12, width=1280, height=720, framerate=59/1' !\
+interpipesink name=cam1 async=true sync=false 
+
+#CAM1 PIPEPLINE CREATE
+gst-client pipeline_create pipe2 nvarguscamerasrc sensor_id=1 ! \
+'video/x-raw(memory:NVMM), format=NV12, width=1280, height=720, framerate=59/1' !\
+ interpipesink name=cam2 async=true sync=false
+
+#SINK and RTSP
+gst-client pipeline_create pipe3 interpipesrc name=interpipesrc1 listen-to=cam1 format=time ! \
+queue ! nvvidconv ! 'video/x-raw,format=NV12, width=640, height=480, framerate=59/1' ! \
+omxh264enc profile=8 control_rate=2 insert-sps-pps=1 iframeinterval=15 bitrate=1000000 ! \
+'video/x-h264,stream-format=avc' ! rtph264pay ! 'application/x-rtp, payload=96' !  interpipesink name=udpsrc1
+
+
+#RECEIEVE RTSP CAM
+gst-client pipeline_create pipe4 udpsrc address=192.168.2.52 port=8554 ! interpipesink name=udpsrc2
+
+#SINK AND RTSP
+gst-client pipeline_create pipe5 interpipesrc name=udpsink1 listen-to=udpsrc1 ! 'application/x-rtp, payload=96' ! \
+udpsink host=192.168.2.95 port=8554 sync=false async=false
+
+#TO SWITCH CAMERA'S 
+gstd-client element_set pipe3 interpipesrc1 listen-to cam1
+
+#TO SWITCH RTSP SOURCE
+gstd-client element_set pipe5 udpsink1 listen-to udpsrc2
+
+#START ALL PIPELINE
+gst-client pipeline_play pipe1
+gst-client pipeline_play pipe2
+gst-client pipeline_play pipe3
+gst-client pipeline_play pipe4
+gst-client pipeline_play pipe5
+
+
+#STOP PIPELINE
+gst-client pipeline_stop pipe1
+gst-client pipeline_stop pipe2
+gst-client pipeline_stop pipe3
+gst-client pipeline_stop pipe4
+gst-client pipeline_stop pipe5
+
+
+#STOP AND DELETE 
+gstd-client pipeline_delete pipe1
+gstd-client pipeline_delete pipe2
+gstd-client pipeline_delete pipe3
+gstd-client pipeline_delete pipe4
+gstd-client pipeline_delete pipe5
+
