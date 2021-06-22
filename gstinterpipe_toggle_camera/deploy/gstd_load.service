@@ -1,0 +1,15 @@
+[Unit]
+Description=Start GST Load
+
+[Service]
+# Make sure tun0 is up/active
+# ExecStartPre=/bin/bash -c "systemctl is-active sys-devices-virtual-net-tun0.device"
+# Keep restarting till tun0 is up
+# Restart=on-failure
+
+ExecStart=/usr/local/sbin/computer/gstd_load.sh
+Type=oneshot
+
+
+[Install]
+WantedBy=multi-user.target
