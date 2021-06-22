@@ -7,14 +7,14 @@ else
 fi
 
 # copy sh files
-sudo cp ./gst_load.sh /usr/local/sbin/computer/gst_load.sh
+sudo cp ./gstd_load.sh /usr/local/sbin/computer/gstd_load.sh
 
 sudo cp ./camera_switch_start.sh /usr/local/sbin/computer/camera_switch_start.sh
 
 
 
 # +x for sh files
-sudo chmod +x /usr/local/sbin/computer/gst_load.sh
+sudo chmod +x /usr/local/sbin/computer/gstd_load.sh
 sudo chmod +x /usr/local/sbin/computer/camera_switch_start.sh
 
 
@@ -29,3 +29,4 @@ sudo systemctl daemon-reload
 # Enable the service during startup
 sudo systemctl enable switch_camera_start.service
 sudo systemctl enable gstd_load.service
+
