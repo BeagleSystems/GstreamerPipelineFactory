@@ -125,7 +125,7 @@ omxh264enc profile=8 control_rate=2 insert-sps-pps=1 iframeinterval=15 bitrate=1
 'video/x-h264,stream-format=avc' ! rtph264pay ! 'application/x-rtp, payload=96' !  interpipesink name=udpsrc1
  ```
 
-The below steps should be created only in the case of existance of an external camera source. 
+*The below steps should be created only in the case of existance of an external camera source.*
 
 **Step 5: (Optional) To recieve stream from external camera source**
 
@@ -165,15 +165,15 @@ To delete a pipeline
  ```
 gstd-client element_set pipe3 interpipesrc1 listen-to cam1
  ```
-Where, 
-cam1 - Camera source 1 
-cam2 - Camera source 2
+Where, <br />
+cam1 - Camera source 1 (CSI Camera) <br /> 
+cam2 - Camera source 2 (CSI Camera)
 
 **2. To Switch between UDPSRC source's**
  ```
 gstd-client element_set pipe5 udpsink1 listen-to udpsrc2
  ```
 
-Where, 
-udpsrc1 - Host camera source
+Where, <br />
+udpsrc1 - Host camera source <br />
 udpsrc2 - External camera source
