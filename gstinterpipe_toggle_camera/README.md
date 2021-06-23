@@ -31,7 +31,9 @@ Setting up services,
 cd GstreamerPipelineFactory/gstinterpipe_toggle_camera/deploy/
 chmod +x install_switch_services.sh
 sudo sh ./install_switch_services.sh
+sudo reboot now
 ```
+
 
 ## Installation guide (Manual)
 
