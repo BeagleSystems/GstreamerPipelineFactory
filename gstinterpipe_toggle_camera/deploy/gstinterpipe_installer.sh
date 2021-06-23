@@ -14,6 +14,8 @@ git clone https://github.com/RidgeRun/gstd-1.x.git
 sleep 1
 
 #Install Dependencies for Gstreamer Daemon
+sudo apt-get update
+
 sudo apt-get install automake libtool pkg-config libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libglib2.0-dev libjson-glib-dev gtk-doc-tools libreadline-dev libncursesw5-dev libdaemon-dev libjansson-dev libsoup2.4-dev python3-pip
 
 sleep 1 
