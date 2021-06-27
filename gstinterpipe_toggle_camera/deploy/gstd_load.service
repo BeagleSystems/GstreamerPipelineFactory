@@ -8,7 +8,7 @@ Description=Start GST Load
 # Restart=on-failure
 
 ExecStart=/usr/local/sbin/computer/gstd_load.sh
-Type=oneshot
+Type=simple
 
 
 [Install]

@@ -10,7 +10,7 @@ After=sys-devices-virtual-net-tun0.device
 # Restart=on-failure
 
 ExecStart=/usr/local/sbin/computer/camera_switch_start.sh
-Type=oneshot
+Type=simple
 
 [Install]
 WantedBy=multi-user.target
