@@ -11,7 +11,31 @@ Using this particular pipeline will allow us to change different channel's of st
 ## Overall Architecture
 ![Working of Pipelines](./overall_architecture.png)
 
-## Installation guide
+
+## Express Installer Guide
+
+Run the below scripts to install all the necessary dependencies for Gstinterpipe and also includes setting up services to run all the pipelines automatically. 
+
+```
+git clone https://github.com/BeagleSystems/GstreamerPipelineFactory.git
+cd GstreamerPipelineFactory/gstinterpipe_toggle_camera/deploy/
+chmod +x gstinterpipe_installer.sh
+sudo sh ./gstinterpipe_installer.sh
+```
+
+*The installation process might take a while, (Around 5-10mins)*
+
+Setting up services,
+
+```
+cd GstreamerPipelineFactory/gstinterpipe_toggle_camera/deploy/
+chmod +x install_switch_services.sh
+sudo sh ./install_switch_services.sh
+sudo reboot now
+```
+
+
+## Installation guide (Manual)
 
 Since Gstreamer Gstinterpipe isn't available in default libraries from Gstreamer. It is requested to setup the source PC(Jetson Nano) with additional packages in order to run Gstinterpipe pipelines.  
 

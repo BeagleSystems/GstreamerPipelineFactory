@@ -1,0 +1,16 @@
+[Unit]
+Description=Create and Start Camera Pipeline
+Wants=sys-devices-virtual-net-tun0.device
+After=sys-devices-virtual-net-tun0.device
+
+[Service]
+# Make sure tun0 is up/active
+# ExecStartPre=/bin/bash -c "systemctl is-active sys-devices-virtual-net-tun0.device"
+# Keep restarting till tun0 is up
+# Restart=on-failure
+
+ExecStart=/usr/local/sbin/computer/camera_switch_start.sh
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
